@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PharmaChain | Secure Medication Provenance</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-gray-50 min-h-screen font-sans">
+
+    <!-- Header -->
+    <nav class="bg-blue-800 text-white p-4 shadow-lg">
+        <div class="container mx-auto flex justify-between items-center">
+            <h1 class="text-2xl font-bold flex items-center">
+                <span class="mr-2">💊</span> PharmaChain
+            </h1>
+            <button id="connectBtn" class="bg-blue-600 hover:bg-blue-500 px-6 py-2 rounded-full font-semibold transition">
+                Connect Wallet
+            </button>
+        </div>
+    </nav>
+
+    <main class="container mx-auto py-10 px-4">
+        <div class="grid md:grid-cols-2 gap-10">
+            
+            <!-- Manufacturer Section -->
+            <section class="bg-white p-8 rounded-xl shadow-md border-t-4 border-blue-600">
+                <h2 class="text-xl font-bold mb-6 text-gray-800 border-b pb-2">Manufacturer: Register Batch</h2>
+                <div class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">Medicine Name</label>
+                        <input type="text" id="medName" placeholder="e.g. Insulin Pro" class="w-full mt-1 p-2 border rounded-md focus:ring-2 focus:ring-blue-500 outline-none">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">Batch Serial Number</label>
+                        <input type="text" id="medSerial" placeholder="Batch-#12345" class="w-full mt-1 p-2 border rounded-md focus:ring-2 focus:ring-blue-500 outline-none">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">Expiry Date</label>
+                        <input type="date" id="medExpiry" class="w-full mt-1 p-2 border rounded-md focus:ring-2 focus:ring-blue-500 outline-none">
+                    </div>
+                    <button id="mintButton" class="w-full bg-green-600 hover:bg-green-500 text-white font-bold py-3 rounded-lg transition disabled:opacity-50">
+                        Mint Verifiable Token
+                    </button>
+                </div>
+            </section>
+
+            <!-- Pharmacy Section -->
+            <section class="bg-white p-8 rounded-xl shadow-md border-t-4 border-teal-600">
+                <h2 class="text-xl font-bold mb-6 text-gray-800 border-b pb-2">Pharmacy: Verify Medication</h2>
+                <div class="space-y-4">
+                    <p class="text-sm text-gray-600">Enter Policy ID to verify the authenticity of Received Stock.</p>
+                    <input type="text" id="verifyPolicy" placeholder="Enter Policy ID..." class="w-full p-2 border rounded-md focus:ring-2 focus:ring-teal-500 outline-none">
+                    <button id="verifyButton" class="w-full bg-teal-600 hover:bg-teal-500 text-white font-bold py-3 rounded-lg transition">
+                        Check Provenance
+                    </button>
+                </div>
+                <div id="statusResult" class="mt-6 p-4 rounded-lg hidden">
+                    <!-- Status injected here -->
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- Modal / Ledger Progress -->
+    <div id="loader" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden">
+        <div class="bg-white p-6 rounded-lg shadow-xl text-center">
+            <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-800 mx-auto mb-4"></div>
+            <p class="text-gray-800 font-medium">Interacting with Blockchain...</p>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/lucid-cardano/bundle/lucid.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
